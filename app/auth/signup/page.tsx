@@ -8,7 +8,6 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { filterFormikErrors } from "@utils/formikHelpers";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const validationSchema = yup.object().shape({
@@ -21,7 +20,6 @@ const validationSchema = yup.object().shape({
 });
 
 export default function SignUp() {
-  const router = useRouter();
   const {
     values,
     handleChange,

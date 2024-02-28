@@ -1,4 +1,4 @@
-import { compare, genSalt, hash } from "bcrypt";
+import { compare, genSalt, hash } from "bcryptjs";
 import { Document, Model, ObjectId, Schema, model, models } from "mongoose";
 
 interface EmailVerificationTokenDocument extends Document {

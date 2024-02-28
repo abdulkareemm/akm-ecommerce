@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from "react";
 
-interface Props{
-    children: ReactNode
+interface Props {
+  children: ReactNode;
 }
 
-export default function AuthLayout({children}:Props) {
+export default function AuthLayout({ children }: Props) {
   return (
-    <div className='h-screen flex items-center justify-center'>{children}</div>
-  )
+    <div className="h-screen flex items-center justify-center">{children}</div>
+  );
 }

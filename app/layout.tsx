@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/navbar";
+import Navbar from "@components/navbar";
+import Notifications from "@components/Notifications";
+
 
 
 export const metadata: Metadata = {
@@ -18,6 +20,7 @@ export default function RootLayout({
       <body>
         <Navbar/>
         {children}
+        <Notifications/>
       </body>
     </html>
   );
