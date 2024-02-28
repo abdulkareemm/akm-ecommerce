@@ -6,7 +6,6 @@ import { NextResponse } from "next/server";
 connectDB();
 
 export const POST = async (req: Request) => {
-  console.log("1")
   const { email, password } = (await req.json()) as SignInCredentials;
   if (!email || !password)
     return NextResponse.json(
