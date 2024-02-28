@@ -17,7 +17,6 @@ export const POST = async (req: Request) => {
         { status: 401 }
       );
     }
-
     const verifyToken = await EmailVerificationToken.findOne({ user: userId });
     if (!verifyToken) {
       return NextResponse.json({ error: "Invalid token!" }, { status: 401 });
@@ -36,6 +35,7 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json({ message: "Your email is verified." });
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       {
         error: "could not verify email, something went wrong!",
