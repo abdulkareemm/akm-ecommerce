@@ -1,6 +1,6 @@
 import { SignInCredentials } from "@/app/types";
 import axios from "axios";
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 const authConfig = {
   providers: [
@@ -24,6 +24,6 @@ const authConfig = {
 };
 
 export const {
-  auth,
   handlers: { GET, POST },
+  auth,
 } = NextAuth(authConfig);

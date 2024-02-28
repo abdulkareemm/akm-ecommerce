@@ -38,12 +38,13 @@ export default function SignIn() {
         ...values,
         redirect: false,
       });
-
-      if (signInRes?.error === "CredentialsSignin") {
-        toast.error("Email/Password mismatch!");
-      }
+      console.log(signInRes)
+      // if (signInRes?.error === "CredentialsSignin") {
+      //   toast.error("Email/Password mismatch!");
+      // }
 
       if (!signInRes?.error) {
+        toast.error(!signInRes?.error);
         router.refresh();
       }
     },
@@ -59,7 +60,7 @@ export default function SignIn() {
   };
 
   return (
-    <AuthFormContainer title="Create New Account" onSubmit={handleSubmit}>
+    <AuthFormContainer title="Welcome back" onSubmit={handleSubmit}>
       <Input
         crossOrigin={""}
         name="email"

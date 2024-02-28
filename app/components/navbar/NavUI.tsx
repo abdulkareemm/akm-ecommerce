@@ -18,6 +18,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
+import useAuth from "@hooks/useAuth";
 
 interface Props {
   cartItemsCount: number;
@@ -44,6 +45,7 @@ export const menuItems = [
 
 export default function NavUI({ cartItemsCount, avatar }: Props) {
   const [open, setOpen] = React.useState(false);
+  const {loading,loggedIn} = useAuth()
 
   React.useEffect(() => {
     const onResize = () => window.innerWidth >= 960 && setOpen(false);
@@ -63,15 +65,23 @@ export default function NavUI({ cartItemsCount, avatar }: Props) {
           <div className="hidden lg:flex gap-2 items-center">
             <CartIcon cartItems={cartItemsCount} />
 
-            <Link className="px-4 py-1" href="/auth/signin">
-              Sign in
-            </Link>
-            <Link
-              className="bg-blue-500 text-white px-4 py-1 rounded"
-              href="/auth/signup"
-            >
-              Sign up
-            </Link>
+            {loggedIn ? (
+              <ProfileMenu menuItems={menuItems} />
+            ) : loading ? (
+              <Spinner />
+            ) : (
+              <>
+                <Link className="px-4 py-1" href="/auth/signin">
+                  Sign in
+                </Link>
+                <Link
+                  className="bg-blue-500 text-white px-4 py-1 rounded"
+                  href="/auth/signup"
+                >
+                  Sign up
+                </Link>
+              </>)
+}
           </div>
 
           <div className="lg:hidden flex items-center space-x-2">

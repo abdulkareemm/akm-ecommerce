@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@components/navbar";
 import Notifications from "@components/Notifications";
-
-
+import AuthSession from "./components/AuthSession";
 
 export const metadata: Metadata = {
   title: "AKM Ecommerce",
@@ -18,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <AuthSession>
           <Navbar />
           {children}
           <Notifications />
+        </AuthSession>
       </body>
     </html>
   );

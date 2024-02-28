@@ -6,18 +6,25 @@ import { NextResponse } from "next/server";
 connectDB();
 
 export const POST = async (req: Request) => {
+  console.log("1")
   const { email, password } = (await req.json()) as SignInCredentials;
   if (!email || !password)
-    return NextResponse.json({
-      error: "Invalid request, email password missing!",
-    });
+    return NextResponse.json(
+      {
+        error: "Invalid request, email password missing!",
+      },
+      { status: 403 }
+    );
 
   const user = await UserModel.findOne({ email });
-  if (!user) return NextResponse.json({ error: "Email/Password mismatch!" });
+  if (!user) return NextResponse.json({ error: "Email/Password mismatch!" },{status:403});
 
   const passwordMatch = await user.comparePassword(password);
   if (!passwordMatch)
-    return NextResponse.json({ error: "Email/Password mismatch!" });
+    return NextResponse.json(
+      { error: "Email/Password mismatch!" },
+      { status: 403 }
+    );
 
   return NextResponse.json({
     user: {
