@@ -22,6 +22,21 @@ const authConfig = {
       },
     }),
   ],
+  callbacks:{
+    async jwt(params:any){
+      if(params.user){
+        params.token.user = params.user
+      }
+      return params.token
+    },
+    async session(params:any){
+      const user = params.token.user
+      if(user){
+        params.session.user = {...params.session.user,...user}
+      }
+      return params.session
+    }
+  }
 };
 
 export const {
