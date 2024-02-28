@@ -11,11 +11,13 @@
   "dependencies": {
     "@heroicons/react": "^2.1.1",
     "@material-tailwind/react": "^2.1.9",
+    "@types/nodemailer": "^6.4.14",
     "axios": "^1.6.7",
     "bcryptjs": "^2.4.3",
     "formik": "^2.4.5",
     "mongoose": "^8.2.0",
     "next": "14.1.0",
+    "nodemailer": "^6.9.10",
     "react": "^18",
     "react-dom": "^18",
     "react-toastify": "^10.0.4",

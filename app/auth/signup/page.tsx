@@ -35,13 +35,12 @@ export default function SignUp() {
     validationSchema,
     onSubmit: async (values, action) => {
       action.setSubmitting(true);
-      // try {
-      //   const response = await axios.post("/api/users", values);
-      //   toast.success(response.data.message);
-      // } catch (error: any) {
-      //   toast.error(error.response.data.message || "Something went wrong");
-      // }
-      console.log(values)
+      try {
+        const response = await axios.post("/api/users", values);
+        toast.success(response.data.message);
+      } catch (error: any) {
+        toast.error(error.response.data.message || "Something went wrong");
+      }
     },
   });
   const { name, email, password } = values;
