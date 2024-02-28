@@ -18,7 +18,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./app/*"]
+      "@/*": ["./*"],
+      "@hooks*": ["./app/hooks*"],
+      "@types":["./app/types/"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
