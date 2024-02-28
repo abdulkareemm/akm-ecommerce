@@ -4,6 +4,7 @@ import { connectDB } from "@lib/db";
 import { NextResponse } from "next/server";
 import EmailVerificationToken from "@/app/models/emailVerificationModel";
 import { sendEmail } from "@helpers/sendEmail";
+import crypto from "crypto";
 
 connectDB();
 
