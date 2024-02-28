@@ -14,10 +14,13 @@ export default function AuthFormContainer({
   return (
     <form
       onSubmit={onSubmit}
-      className="w-96 p-6 space-y-6 bg-white shadow-md rounded-md"
+      className="w-96  mt-5 mb-5 rounded-md relative overflow-hidden  p-1 bg-transparent"
     >
-      <h3 className="text-center font-semibold">{title}</h3>
-      {children}
+      <span className="box"></span>
+      <div className="flex flex-col space-y-6 p-5 bg-white ">
+        <h3 className="text-center font-semibold mt-4">{title}</h3>
+        {children}
+      </div>
     </form>
   );
 }
