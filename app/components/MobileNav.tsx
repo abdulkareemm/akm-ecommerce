@@ -13,6 +13,7 @@ import Link from "next/link";
 import useAuth from "@hooks/useAuth";
 import { MenuItems } from "@types";
 import Logo from "./navbar/Logo";
+import {signOut } from "next-auth/react"
 
 interface Props {
   open: boolean;
@@ -27,7 +28,7 @@ export function MobileNav({ open, onClose, menuItems }: Props) {
     <>
       <Drawer placeholder={""} open={open} onClose={onClose}>
         <div className="mb-2 flex items-center justify-between p-4 z-50">
-          <Logo width={60} height={30}/>
+          <Logo width={60} height={30} />
           <IconButton
             placeholder={""}
             variant="text"
@@ -61,7 +62,7 @@ export function MobileNav({ open, onClose, menuItems }: Props) {
           ) : null}
 
           {loggedIn ? (
-            <ListItem placeholder={""}>
+            <ListItem placeholder={""} onClick={async () => await signOut()}>
               <ListItemPrefix placeholder={""}>
                 <PowerIcon className="h-5 w-5" />
               </ListItemPrefix>
@@ -75,9 +76,10 @@ export function MobileNav({ open, onClose, menuItems }: Props) {
               >
                 Sign in
               </Link>
+
               <Link
                 className="bg-blue-500 text-white px-4 py-1 rounded flex-1 text-center"
-                href="/auth/signup"
+                href="/auth/sig"
               >
                 Sign up
               </Link>

@@ -38,14 +38,12 @@ export default function SignIn() {
         ...values,
         redirect: false,
       });
-      console.log(signInRes)
-      // if (signInRes?.error === "CredentialsSignin") {
-      //   toast.error("Email/Password mismatch!");
-      // }
-
-      if (!signInRes?.error) {
-        toast.error(!signInRes?.error);
+      if (signInRes?.error === "CallbackRouteError") {
+        toast.error("Email/Password mismatch!");
         router.refresh();
+      } else {
+        toast.success("Welcome back ")
+        router.replace("/");
       }
     },
   });

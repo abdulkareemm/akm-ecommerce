@@ -14,7 +14,8 @@ const authConfig = {
             "http://localhost:3000/api/users/signin",
             { email, password }
           );
-          return { response };
+          if(response.data.error) return null
+          return {id: response.data.user.id,...response.data.user} ;
         } catch (error: any) {
           throw new Error(error);
         }
