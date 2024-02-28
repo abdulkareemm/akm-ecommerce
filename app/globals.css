@@ -3,3 +3,21 @@
 @tailwind utilities;
 
 
+.slick-next::before,
+.slick-prev::before {
+  color: #000 !important;
+}
+
+.slick-dots {
+  bottom: 6px !important;
+}
+
+/* chrome and chromium based */
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+    display: none;
+  }ß
+  
+  .react-horizontal-scrolling-menu--scroll-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }

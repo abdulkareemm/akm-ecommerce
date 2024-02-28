@@ -24,7 +24,8 @@
       "@components*": ["./app/components*"],
       "@utils*": ["./app/utils*"],
       "@lib*": ["./app/lib*"],
-      "@models*": ["./app/models*"]
+      "@models*": ["./app/models*"],
+      "@helpers*": ["./app/helpers*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
