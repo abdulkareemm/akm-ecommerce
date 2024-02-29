@@ -21,7 +21,6 @@ export default  function ResetPassword({ searchParams }: Props) {
       const response = await axios.post("/api/users/verify-password-token", { token, userId });
       setVerifyToken(response.data.verifyToken);
     } catch (error: any) {
-      console.log(error);
       toast.error(error.response.data.message || "Something went wrong");
     }
   }
@@ -34,7 +33,9 @@ export default  function ResetPassword({ searchParams }: Props) {
   return (
     <>
       {verifyToken ? (
-        <UpdatePassword token={token} userId={userId} />
+        <div className="flex items-center justify-center mt-28">
+          <UpdatePassword token={token} userId={userId} />
+        </div>
       ) : (
         <div className="text-3xl opacity-70 text-center p-5 animate-pulse">
           Please wait...

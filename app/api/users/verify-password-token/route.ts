@@ -5,7 +5,6 @@ import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
 
 connectDB();
-
 export const POST = async (req: Request) => {
   try {
     const { token, userId } =
@@ -20,12 +19,15 @@ export const POST = async (req: Request) => {
       user: userId,
     });
     if (!verifyToken) {
-      return NextResponse.json({ error: "Invalid token!" }, { status: 401 });
+      return NextResponse.json(
+        { error: "Unauthorized request!" },
+        { status: 401 }
+      );
     }
     const isMatched = await verifyToken.compareToken(token);
     if (!isMatched) {
       return NextResponse.json(
-        { error: "Invalid token, token doesn't match!" },
+        { error: "Unauthorized request!" },
         { status: 401 }
       );
     }

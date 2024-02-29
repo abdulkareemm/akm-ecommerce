@@ -4,9 +4,10 @@ import { ForgetPasswordRequest } from "@types"
 import { NextResponse } from "next/server"
 import crypto from "crypto"
 import { sendEmail } from "@helpers/sendEmail"
+import { connectDB } from "@/app/lib/db"
 
 
-
+connectDB()
 export const POST = async(req:Request)=>{
     try {
         const { email } = (await req.json()) as ForgetPasswordRequest;
