@@ -11,6 +11,7 @@ import * as yup from "yup";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -30,17 +31,21 @@ export default function ForgetPassword() {
     initialValues: { email: "" },
     validationSchema,
     onSubmit: async (values, actions) => {
-    //   const signInRes = await signIn("credentials", {
-    //     ...values,
-    //     redirect: false,
-    //   });
-    //   if (signInRes?.error === "CallbackRouteError") {
-    //     toast.error("Email/Password mismatch!");
-    //     router.refresh();
-    //   } else {
-    //     toast.success("Welcome back ");
-    //     router.replace("/");
-    //   }
+      actions.setSubmitting(true);
+      try {
+        const response = await axios.post("/api/users/forget-password", {
+          values,
+        });
+        toast.success(response.data.message);
+      } catch (error: any) {
+        toast.error(
+          error.response.data.error
+            ? error.response.data.error
+            : "Something went wrong"
+        );
+      } finally {
+        actions.setSubmitting(false);
+      }
     },
   });
 
@@ -69,7 +74,9 @@ export default function ForgetPassword() {
         className="w-full bg-blue-500 text-white"
         disabled={isSubmitting}
         placeholder={""}
-      > Send Link
+      >
+        {" "}
+        Send Link
       </Button>
       <div className="flex items-center justify-between">
         <Link href="/auth/signin">Sign in</Link>

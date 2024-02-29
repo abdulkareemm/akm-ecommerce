@@ -11,7 +11,7 @@ export const POST = async(req:Request)=>{
     try {
         const { email } = (await req.json()) as ForgetPasswordRequest;
         if (!email)
-          return NextResponse.json({ error: "Invalid email" }, { status: 401 });
+          return NextResponse.json({ error: "email is mismatch" }, { status: 401 });
         const user = await UserModel.findOne({ email });
         if (!user)
           return NextResponse.json(
