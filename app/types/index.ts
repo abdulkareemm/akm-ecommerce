@@ -24,6 +24,11 @@ export interface ForgetPasswordRequest {
   email: string;
 }
 
+export interface ResetPasswordLinkVerifyRequest {
+  token: string;
+  userId:string
+}
+
 export interface UpdatePasswordRequest {
   password: string;
   token: string;

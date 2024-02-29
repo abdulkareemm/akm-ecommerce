@@ -1,7 +1,6 @@
+import PasswordResetToken from "@models/passwordResetTokenModel";
+import { ResetPasswordLinkVerifyRequest } from "@/app/types";
 import { connectDB } from "@lib/db";
-import EmailVerificationToken from "@models/emailVerificationModel";
-import UserModel from "@models/userModel";
-import { EmailVerifyRequest } from "@types";
 import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
 
@@ -9,18 +8,27 @@ connectDB();
 
 export const POST = async (req: Request) => {
   try {
-    const { token, userId } = (await req.json()) as EmailVerifyRequest;
-
+    const { token, userId } =
+      (await req.json()) as ResetPasswordLinkVerifyRequest;
+    console.log(token, userId);
+    console.log("1")
     if (!isValidObjectId(userId) || !token) {
       return NextResponse.json(
         { error: "Invalid request, userId and token is required!" },
         { status: 401 }
       );
     }
-    const verifyToken = await EmailVerificationToken.findOne({ user: userId });
+    console.log("2");
+
+    const verifyToken = await PasswordResetToken.findOne({
+      user: userId,
+    });
+    console.log("3");
+
     if (!verifyToken) {
       return NextResponse.json({ error: "Invalid token!" }, { status: 401 });
     }
+    console.log("4");
 
     const isMatched = await verifyToken.compareToken(token);
     if (!isMatched) {
@@ -29,15 +37,14 @@ export const POST = async (req: Request) => {
         { status: 401 }
       );
     }
+    console.log("5");
 
-    await UserModel.findByIdAndUpdate(userId, { verified: true });
-    await EmailVerificationToken.findByIdAndDelete(verifyToken._id);
-
-    return NextResponse.json({ message: "Your email is verified." });
+    // await PasswordResetToken.findByIdAndDelete(verifyToken._id);
+    return NextResponse.json({ verifyToken: true });
   } catch (error) {
     return NextResponse.json(
       {
-        error: "could not verify email, something went wrong!",
+        error: "could not reset password, something went wrong!",
       },
       { status: 500 }
     );

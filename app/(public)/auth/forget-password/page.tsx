@@ -33,9 +33,9 @@ export default function ForgetPassword() {
     onSubmit: async (values, actions) => {
       actions.setSubmitting(true);
       try {
-        const response = await axios.post("/api/users/forget-password", {
+        const response = await axios.post("/api/users/forget-password", 
           values,
-        });
+        );
         toast.success(response.data.message);
       } catch (error: any) {
         toast.error(
